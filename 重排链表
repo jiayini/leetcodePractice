@@ -6,6 +6,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+ 1，2，3，4，5 =》 1，5，2，4，3
 class Solution {
     public void reorderList(ListNode head) {
         ListNode curr = head;
@@ -39,3 +40,20 @@ class Solution {
        return tail;
     }
 }
+
+解法2：递归
+  public void reorderList(ListNode head) {
+        if (head != null && head.next != null) {
+            ListNode p = head;
+            ListNode tail = new ListNode(0);
+            while (p.next.next != null) {
+                p = p.next;
+            }
+            tail = p.next;
+            p.next = null;
+            tail.next = head.next;
+            head.next = tail;
+            reorderList(tail.next);
+        }
+    }
+    
