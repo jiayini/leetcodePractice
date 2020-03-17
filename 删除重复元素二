@@ -1,0 +1,31 @@
+ public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode p = dummy; ListNode q = p.next;
+        Boolean duphead = false;
+        while (q != null && q.next !=null) {
+            if (q.val == q.next.val) {
+                while(q.val == q.next.val) {
+                    q = q.next;
+                    if (q.next == null) {
+                        if (p.next == head) {
+                            return null;
+                        }
+                        break;
+                    }
+                }
+                p.next = q.next;
+            } else {
+                p = p.next;
+                if (duphead == false && p.val != head.val) {
+                    head = p;
+                }
+                duphead = true;
+            }
+            q = q.next;
+        }
+        if (p == dummy) {
+            head = p.next;
+        }
+        return head;
+    }
