@@ -30,3 +30,17 @@ class Solution:
         
         
    // 用python3同样的思路运行超时
+   
+        def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        res = [0]
+        ans = 0
+        for i in range(len(arr)):
+            print(res[-1])
+            res.append(res[-1] + arr[i])
+        # print(res)
+        for i in range(len(res)-k):
+            b = res[i+k]
+            a = res[i]
+            if (b-a)/k >= threshold:
+                ans+=1  
+        return ans
